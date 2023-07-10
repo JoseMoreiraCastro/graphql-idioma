@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
 import { IdiomaService } from './idioma.service';
-import { IdiomaResolver } from './idioma.resolver';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Idioma } from './entities/idioma.entity';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { IdiomaResolver } from './idioma.resolver';
 
 
 @Module({
   providers: [IdiomaService, IdiomaResolver],
   imports:[
-    TypeOrmModule.forFeature([Idioma]),
-    IdiomaModule
+    TypeOrmModule.forFeature([Idioma])
   ]
 })
 export class IdiomaModule {}

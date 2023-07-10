@@ -9,9 +9,9 @@ export class IdiomaResolver {
   constructor(private readonly idiomaService: IdiomaService) {}
 
   @Mutation(() => Idioma)
-  async createIdioma(@Args('createIdiomaInput') createIdiomaInput: CreateIdiomaInput)
+  async createIdioma(@Args('createIdiomateInput') createIdiomateInput: CreateIdiomaInput)
   :Promise<Idioma> {
-    return this.idiomaService.create(createIdiomaInput);
+    return this.idiomaService.create(createIdiomateInput);
   }
 
   @Query(() => [Idioma], { name: 'idiomas' })
@@ -25,12 +25,12 @@ export class IdiomaResolver {
   }
 
   @Mutation(() => Idioma)
-  updateEstudiante(@Args('updateIdiomaInput') updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma> {
+  updateIdioma(@Args('updateIdiomaInput') updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma> {
     return this.idiomaService.update(updateIdiomaInput.id, updateIdiomaInput);
   }
 
   @Mutation(() => Idioma)
-  removeIdioma(@Args('id', { type: () => ID }) id: string): Promise<Idioma> {
+  removeIdioma(@Args('id', { type: () => ID }, ParseUUIDPipe) id: string): Promise<Idioma> {
     return this.idiomaService.remove(id);
   }
 }

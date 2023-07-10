@@ -1,11 +1,9 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-
-@Entity({name:'idiomas'})
+@Entity({name:'idioma'})
 @ObjectType()
 export class Idioma {
-    
     @PrimaryGeneratedColumn('uuid')
     @Field(()=> ID)
     id:string;

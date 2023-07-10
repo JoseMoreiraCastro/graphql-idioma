@@ -1,12 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateIdiomaInput, UpdateIdiomaInput } from './dto/inputs';
+import { CreateIdiomaInput } from './dto/inputs/create-idioma.input';
+import { UpdateIdiomaInput } from './dto/inputs/update-idioma.input';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Idioma } from './entities/idioma.entity';
 import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+
+
 
 @Injectable()
 export class IdiomaService {
-
   constructor( 
     @InjectRepository(Idioma)
     private readonly idiomaRepository:Repository<Idioma> ){}
@@ -37,10 +39,11 @@ export class IdiomaService {
   async remove(id: string): Promise<Idioma> {
 
     const idioma= await  this.findOne(id);
+    idioma.estado = false;
 
-    await this.idiomaRepository.remove(idioma);
+    await this.idiomaRepository.update({id}, idioma);
 
-    return {...idioma, id};
+    return idioma;
 
   }
 }
